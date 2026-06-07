@@ -1,27 +1,19 @@
 """
-GPS Anti-Spoofing & Jamming Detection Module
-============================================
+GPS Anti-Spoofing & Jamming Detection Module — Live Hardware Build
+==================================================================
 gps_antispoofing/__init__.py
-
-Top-level package. Exposes the main DetectionEngine for easy use.
 
 Quick start:
     from gps_antispoofing import DetectionEngine
-    from gps_antispoofing.simulator import ScenarioSimulator, Scenario
-
     engine = DetectionEngine()
-    sim    = ScenarioSimulator(Scenario.SPOOFING_PULLOFF)
 
-    for epoch in range(60):
-        imu_frames = sim.generate_imu_frames(200)
-        gps_frames = sim.generate_gps_frame()
+    # Feed IMU at 200 Hz:
+    engine.ingest_imu(imu_frame)
 
-        for imu in imu_frames:
-            engine.ingest_imu(imu)
-
-        alert = engine.ingest_gps(gps_frames)
-        if alert:
-            print(alert.mitigation_action)
+    # Feed GPS at 1 Hz:
+    alert = engine.ingest_gps([rx1_frame, rx2_frame])
+    if alert:
+        print(alert.mitigation_action)
 """
 
 from .engine import DetectionEngine
@@ -36,5 +28,4 @@ __all__ = [
     "ConstellationID",
 ]
 
-__version__ = "1.0.0"
-__author__  = "GPS Anti-Spoofing Module"
+__version__ = "1.0.0-live"

@@ -1,0 +1,14 @@
+# GPS Anti-Spoofing — Live Hardware Requirements
+# ------------------------------------------------
+# Core (required)
+numpy>=1.24.0
+pyserial>=3.5         # GPS receiver serial communication
+
+# IMU — only needed if using a physical MPU-6050 / MPU-9250
+# Install on Raspberry Pi / Linux SBC:
+#   sudo apt install python3-smbus
+#   pip install smbus2
+smbus2>=0.4.1
+
+# Optional — for dashboard live feed via HTTP
+# flask>=3.0.0
